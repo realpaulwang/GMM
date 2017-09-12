@@ -10,4 +10,4 @@ A Gaussian Mixture Model is trained using EM update equations given in the follo
 
 http://melodi.ee.washington.edu/people/bilmes/mypapers/em.pdf
 
-The model is a mixture of 3 Gaussian distributions. Mu and Sigma are randomly initialized. For each pixel, cluster labels are determined based on likelihood the pixel comes from each distribution, and choosing the maximum. Then a new image is reconstructed such that each pixels correspondes to the cluster mean (Mu).
+The model is a mixture of m Gaussian distributions (m=n_cluster). Mu and Sigma are randomly initialized. For each pixel, cluster labels are determined based on likelihood the pixel comes from each distribution, and choosing the maximum. Then a new image is reconstructed such that each pixels correspondes to the cluster mean (Mu). Higher m requires longer time to run.
