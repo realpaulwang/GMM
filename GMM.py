@@ -93,9 +93,10 @@ class GMM:
             cov.append(np.dot(cov_init[i].T, gamma.T[i][:,None] * cov_init[i]))
         cov = np.array(cov)
         gamma_sum = np.sum(gamma, axis = 0)
-        cov /= gamma_sum[:, None]
+        for i in range(self.n_clusters):
+            cov[i] /= gamma_sum[i]
         
-        return omega, mean, cov+np.eye(3)*1000
+        return omega, mean, cov+np.eye(3)*0.1
         
     def train(self, iteration):
         """
@@ -118,8 +119,12 @@ class GMM:
         img = Image.fromarray(x.reshape(self.height, self.weight,\
                                               self.n_channel))
         img.show()
+        img.save('GMM_part2_result_10.bmp')
         
 if __name__ == '__main__':
-    gmm = GMM('corgi.png', 3)
-
-    gmm.train(500)
+    gmm = GMM('corgi.png', 10)
+#    imarray = gmm.imarray
+#    mean = gmm.init_mean
+#    cov = gmm.init_cov
+#    omega = gmm.init_omega
+    gmm.train(50)
